@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Apology
+{% endblock %}
+
+{% block main %}
+    <table>
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Shares</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+         <tfoot>
+            <tr>
+                <td colspan="4"></td>
+                <td>{{ "$%.2f"|format(total) }}</td>
+            </tr>
+        </tfoot>
+        <tbody>
+            {% for row in rows %}
+
+            <tr>
+                <td>{{ row.symbol }}</td>
+                <td>{{ row.name }}</td>
+                <td>{{ row.shares }}</td>
+                <td>{{ "$%.2f"|format(row.price )}}</td>
+                <td>{{ "$%.2f"|format(row.value) }}</td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td>CASH</td>
+                <td colspan = '3'></td>
+                <td>{{ "$%.2f"|format(cash) }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+{% endblock %}
